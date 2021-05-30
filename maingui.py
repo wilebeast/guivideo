@@ -27,6 +27,7 @@ def convert():
 
 
 root = Tk()
+root.title("视频转化工具")
 path = StringVar()
 file = StringVar()
 warning = StringVar()
