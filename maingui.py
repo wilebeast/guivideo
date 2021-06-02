@@ -25,7 +25,6 @@ def convert():
     warning.set("文件转化成功")
 
 
-
 root = Tk()
 root.title("视频转化工具")
 path = StringVar()
