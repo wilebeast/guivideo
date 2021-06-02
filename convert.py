@@ -48,30 +48,18 @@ def combine_video_and_audio(tmp_video_file_name, audio_file_name, output_video_f
 
 
 def start_convert(orig_file_name: str):
-    audio_file_name = get_audio_file_name(orig_file_name)
-    video_file_name = get_video_file_name(orig_file_name)
-    output_video_file_name = get_result_file_name(orig_file_name)
+    audio_file_name, video_file_name, output_video_file_name = get_file_name(orig_file_name)
     get_audio_file(orig_file_name, audio_file_name)
     get_video_file(orig_file_name, video_file_name)
     combine_video_and_audio(video_file_name, audio_file_name, output_video_file_name)
 
 
-def get_audio_file_name(orig_video_file_name):
-    index = orig_video_file_name.rfind(".mp4")
-    audio_file_name = orig_video_file_name[0:index] + ".wav"
-    return audio_file_name
-
-
-def get_video_file_name(orig_video_file):
-    path, filename = os.path.split(orig_video_file)
-    tmp_video_file_name = os.path.join(path, "tmp_" + filename)
-    return tmp_video_file_name
-
-
-def get_result_file_name(orig_video_file):
-    path, filename = os.path.split(orig_video_file)
+def get_file_name(orig_file_name):
+    audio_file_name = os.path.splitext(orig_file_name)[0] + ".wav"
+    path, filename = os.path.split(orig_file_name)
+    video_file_name = os.path.join(path, "tmp_" + filename)
     result_file_name = os.path.join(path, "new_" + filename)
-    return result_file_name
+    return audio_file_name, video_file_name, result_file_name
 
 
 if __name__ == '__main__':
@@ -80,9 +68,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     orig_file_name = sys.argv[1]
-    audio_file_name = get_audio_file_name(orig_file_name)
-    video_file_name = get_video_file_name(orig_file_name)
-    output_video_file_name = get_result_file_name(orig_file_name)
+    audio_file_name, video_file_name, output_video_file_name = get_file_name(orig_file_name)
     get_audio_file(orig_file_name, audio_file_name)
     get_video_file(orig_file_name, video_file_name)
     combine_video_and_audio(video_file_name, audio_file_name, output_video_file_name)
