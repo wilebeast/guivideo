@@ -3,7 +3,7 @@ import os
 import sys
 import ffmpeg
 import cv2
-from moviepy.editor import AudioFileClip
+from moviepy.audio.io import AudioFileClip
 
 
 # 提取音频
